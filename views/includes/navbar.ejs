@@ -1,0 +1,61 @@
+ 
+<body>
+    <nav class="navbar navbar-expand-lg  bg-dark bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Blogify</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog">Write</a>
+        </li>
+        <li class="nav-item dropdown ">
+        
+            
+          <% if (locals.user) { %>
+         
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <%= user.email %>
+          </a>
+          <ul class="dropdown-menu" style="width:25vw">
+            <li><img src="<%= user.profilePicture %>"  width= "70px" height="70px"  class="border border-white m-2 rounded-circle"  alt="..."> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <%= user.name%>  </li>
+             
+              <li class="dropdown-item border-top p-3" href="#"> <span >Email </span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.email %></li>
+             
+              <li class="dropdown-item border-top p-3" href="#"> <span>Age</span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.age %></li>
+           
+              <li class="dropdown-item border-top p-3" href="#">  <span>Contact</span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.contact %></li>
+            
+              <li class="align-middle"> <a class="dropdown-item border-top p-3" href="/user/logout" style="text-align:center"> Logout </a></li>
+           
+          </ul>
+        </li>
+        <% } %> 
+        <li>
+          <% if (!locals.user) { %>
+            <a class="nav-link" href="/user/signup">Create Acount</a>
+          <% } %>
+        </li>
+         
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<% if (locals.error) { %>
+  <div class="alert alert-danger" role="alert">
+    <%- error %>
+    <!-- <button type="button" class="btn-close" aria-label="Close"></button> -->
+  </div>
+<% } %>
+
+</body>
+ 

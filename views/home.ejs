@@ -1,0 +1,25 @@
+
+<%- include("layouts/boilerplate") %>
+
+<body  style="background-color:black" class="container text-white">
+    <div class="row align-items-start   ps-3"  >
+        <% allBlogs.forEach( blog => { %>
+       <a href="/blog/<%= blog._id %>" style="text-decoration:none; color:black">
+        <div class="card m-2" style="width: 22rem;">
+            
+            <img src=<%= blog.path %> class="card-img-top img-fluid width:auto height:" alt="...">
+            <div class="card-body">
+               
+                <h5 class="card-title"><%= blog.title %></h5>
+                <p class="card-text"><%= blog.content.substring(0,40) %>...</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            
+        </div>
+        </a>
+   
+    <% }) %>
+    </div>
+    
+</body>
+</html>

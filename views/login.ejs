@@ -1,0 +1,16 @@
+
+<%- include("layouts/boilerplate") %>
+
+<body class="container" style="background-color:black">
+    <form method="post" action="/user/login" class="mt-5">
+        <label for="email" class="form-label">Email</label>
+        <input type="email"   name="email" class="form-control">
+        <label for="password" class="form-label">password</label>
+        <input type="password" id="password" autocomplete="section-blue shipping street-address" name="password" class="form-control">
+
+        <div class="d-grid gap-2 col-6 mx-auto my-5">   
+        <button class="form-control btn btn-success">SignUp</button>
+        </div>
+    </form>
+</body>
+</html> 

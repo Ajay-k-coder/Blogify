@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment Variables (Secrets)
+.env
+.env.local
+.env.development.local
+
+# Production Build
+build/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+
+# Editor specific folders
+.vscode/
+.DS_Store
