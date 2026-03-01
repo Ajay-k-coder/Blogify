@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const server = express();
 const mongoose = require("mongoose");
@@ -10,7 +11,7 @@ const routeBlog = require("./routes/blog");
 const routeUser = require("./routes/user");
 
 const path = require("path");
-const port = 3000;
+const port = process.env.PORT || 3000;
  
 
 main().then(()=>{
@@ -18,7 +19,10 @@ main().then(()=>{
 }).catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/Blogify');
+  await mongoose.connect(process.env.MONGODB_URI, {
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
+  });
 }
 
 server.set("view engine", "ejs");
