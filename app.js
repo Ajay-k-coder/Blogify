@@ -24,14 +24,14 @@ async function main() {
     // useUnifiedTopology: true,
   });
 }
-
+ 
 server.set("view engine", "ejs");
 server.set("views", path.resolve("views"));
 // server.use(express.static(path.resolve("./uploads")));
 
 server.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-
+ 
+  
 // server.use("/uploads", express.static("uploads"));
 //
 // server.use("/uploads", path.join(__dirname, "./uploads"));
