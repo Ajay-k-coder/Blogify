@@ -2,13 +2,13 @@ const express = require("express");
 
 const router = express.Router({mergeParams:true});
 const multer  = require('multer')
-const Blog = require("../models/blog");
+const Blog = require("../models/mongodb/blog");
 const {isAutherized}  = require("../middleware/auth")
-const Comment = require("../models/comment");
+const Comment = require("../models/mongodb/comment");
 const path = require("path");
  
 const {createBlogHandler} = require("../controllers/blog");
-const blog = require("../models/blog");
+const blog = require("../models/mongodb/blog");
  
 
  

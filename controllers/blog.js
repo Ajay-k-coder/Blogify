@@ -3,7 +3,7 @@
 // const upload = multer({ dest: 'uploads/' })
 
 // const Blog = require("../models/Blog");
-const Blog = require("../models/blog");
+const Blog = require("../models/mongodb/blog");
 
 async function  createBlogHandler(req, res, next){
     const file = req.file;
