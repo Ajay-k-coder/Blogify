@@ -1,6 +1,6 @@
  
 <body>
-    <nav class="navbar navbar-expand-lg  bg-dark bg-body-tertiary" data-bs-theme="dark">
+    <!-- <nav class="navbar navbar-expand-lg  bg-dark bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,21 +18,22 @@
           <a class="nav-link" href="/blog">Write</a>
         </li>
         <li class="nav-item dropdown ">
-        
+         -->
             
-          <% if (locals.user) { %>
+
+          <!-- <% if (locals.user) { %>
          
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
              <%= user.email %>
           </a>
           <ul class="dropdown-menu" style="width:25vw">
-            <li><img src="<%= user.profilePicture %>"  width= "70px" height="70px"  class="border border-white m-2 rounded-circle"  alt="..."> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <%= user.name%>  </li>
-             
+            <li><img src="<%= user.profile_image_url %>"  width= "70px" height="70px"  class="border border-white m-2 rounded-circle"  alt="..."> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <%= user.full_name%>  </li>
+
               <li class="dropdown-item border-top p-3" href="#"> <span >Email </span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.email %></li>
              
               <li class="dropdown-item border-top p-3" href="#"> <span>Age</span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.age %></li>
            
-              <li class="dropdown-item border-top p-3" href="#">  <span>Contact</span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.contact %></li>
+              <li class="dropdown-item border-top p-3" href="#">  <span>Bio</span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.bio %></li>
             
               <li class="align-middle"> <a class="dropdown-item border-top p-3" href="/user/logout" style="text-align:center"> Logout </a></li>
            
@@ -41,11 +42,53 @@
         <% } %> 
         <li>
           <% if (!locals.user) { %>
-            <a class="nav-link" href="/user/signup">Create Acount</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+          </a>
+          <ul class="dropdown-menu" style="width:25vw">
+            <li class="dropdown-item">
+              <a class="nav-link" href="/user/signup">Create Account</a>
+            </li>
+            <li class="dropdown-item">
+              <a class="nav-link" href="/user/login">Login</a>
+            </li>
+          </ul>
           <% } %>
         </li>
          
       </ul>
+    </div>
+  </div>
+</nav> -->
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">BLOGIFY</a>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link" href="/">Home</a>
+       <a class="nav-link" href="/blog/new">Write</a>
+      <% if (locals.user) { %>
+        <img src="<%= user.profile_image_url %>" width="35" height="35" class="rounded-circle ms-2">
+         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <%= user.email %>
+          </a>
+          <ul class="dropdown-menu" style="width:25vw">
+            <li><img src="<%= user.profile_image_url %>"  width= "70px" height="70px"  class="border border-white m-2 rounded-circle"  alt="..."> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <%= user.full_name%>  </li>
+
+              <li class="dropdown-item border-top p-3" href="#"> <span >Email </span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.email %></li>
+             
+              <li class="dropdown-item border-top p-3" href="#"> <span>Age</span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.age %></li>
+           
+              <li class="dropdown-item border-top p-3" href="#">  <span>Bio</span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.bio %></li>
+            
+              <li class="align-middle"> <a class="dropdown-item border-top p-3" href="/user/logout" style="text-align:center"> Logout </a></li>
+              <a class="nav-link" href="/user/logout">Logout</a>
+      </ul>
+        
+      <% } else { %> 
+        <a class="nav-link text-primary" href="/user/login">Login</a>
+        <a class="btn btn-primary btn-sm ms-2" href="/user/signup">Get Started</a>
+      <% } %>
     </div>
   </div>
 </nav>

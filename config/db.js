@@ -8,7 +8,7 @@ const connectMongoDB = async()=>{
     try{
         await mongoose.connect(process.env.MONGODB_URI);
         console.log("mongoDB connection established");
-    }catch(err){     console.log(err)}
+    }catch(err){console.log(err)}
 }
 
 const mysqlPool = mysql.createPool({

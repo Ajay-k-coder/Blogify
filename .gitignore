@@ -17,3 +17,5 @@ yarn-error.log*
 # Editor specific folders
 .vscode/
 .DS_Store
+
+uploads/

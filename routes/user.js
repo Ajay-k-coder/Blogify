@@ -1,50 +1,50 @@
+ 
 const express = require("express");
- 
-const server = express();
+
 const router = express.Router({mergeParams:true});
-const multer  = require('multer')
  
-
-
-server.use(express.json());    
-server.use(express.urlencoded({extended:true}));
-
-const {userSignUpHandler,
-    userLoginHandler
-} = require("../controllers/user");
+const Blog = require("../models/mongodb/blog");
+const {isAutherized}  = require("../middleware/auth")
+const Comment = require("../models/mongodb/comment");
+const path = require("path");
+const { v4: uuidv4 } = require('uuid');
+const {mysqlPool} = require("../config/db");
  
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/usersImages");
-  },
-  filename: function (req, file, cb) {
-    const uniquePreffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    console.log("Unique prefix generated:", uniquePreffix);
-    cb(null, uniquePreffix+ '-' + file.originalname);
-  }
+const {createBlogHandler} = require("../controllers/blog");
+const blog = require("../models/mongodb/blog");
+
+
+
+
+router.get('/:id', async (req, res) => {
+    const userId = req.params.id; // This is the MySQL ID
+    console.log("userId", userId);
+
+    try {
+        // 1. Get User Details from MySQL
+        const [userRows] = await mysqlPool.query(
+            'SELECT full_name, email, profile_image_url, bio, created_at FROM users WHERE id = ?',
+            [userId]
+        );
+        const profileUser = userRows[0];
+
+        if (!profileUser) return res.status(404).send("User not found");
+
+        // 2. Get all Blogs by this user from MongoDB
+        const userBlogs = await Blog.find({ createdBy: userId }).sort({ createdAt: -1 });
+
+        // 3. Render the profile page
+        res.render('user/profile', { 
+            profileUser, 
+            userBlogs,
+            isOwnProfile: req.user && req.user.id == userId // Check if viewing own profile
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server Error");
+    }
 });
 
-const upload = multer({ storage: storage });
 
-router.get("/signup", (req, res, next)=>{
-    res.render("../views/signup", {user: req.user});
-    next();
-});
-
-router.post("/signup", upload.single("profilePicture") ,userSignUpHandler);
-router.post("/login", userLoginHandler); 
-
-router.get("/login",(req, res, next)=>{
-    res.render("../views/login",{user: req.user})
-    next();
-})
-
-
-router.get("/logout",(req, res, next)=>{
-    res.clearCookie("auth_token");
-    res.redirect("/");
-    next();
-});
-
-
-module.exports = router;
+module.exports = router;  

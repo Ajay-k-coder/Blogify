@@ -6,26 +6,21 @@ const { connectMongoDB, mysqlPool } = require('./config/db');
 const cookieParser = require('cookie-parser');
 const {isAuthenticated} = require("./middleware/auth");
 const Blog = require("./models/mongodb/blog");
-
+const path = require("path");
 
 const routeBlog = require("./routes/blog"); 
+const routeAuth = require("./routes/authentication");
 const routeUser = require("./routes/user");
+server.use(express.static(path.join(__dirname, "/public")));
 
-const path = require("path");
-const port = process.env.PORT || 3000;
+const methodOverride = require('method-override')
+server.use(methodOverride('_method'));
+
+const port = process.env.PORT || 3000;  
  
 
-// main().then(()=>{
-//     console.log("mongoDB connection established");
-// }).catch(err => console.log(err));
-
-// async function main() {
-//   await mongoose.connect(process.env.MONGODB_URI, {
-//     // useNewUrlParser: true,
-//     // useUnifiedTopology: true,
-//   });
-// }
  
+  
 connectMongoDB();
 server.set("view engine", "ejs");
 server.set("views", path.resolve("views"));
@@ -48,16 +43,18 @@ server.get("/db-test", async(req, res)=>{
     } catch (err) {
         res.status(500).send("MySQL Connection Failed");
     }
-}) 
+})  
  
 server.get("/", isAuthenticated,async(req, res)=>{
-  let allBlogs = await Blog.find();
+  let allBlogs = await Blog.find(); 
   console.log("user", req.user);
   res.render("home", { allBlogs });
 }) 
   
 server.use("/blog",   isAuthenticated,  routeBlog);
-server.use("/user",   routeUser); 
+server.use("/profile", routeUser);
+server.use("/user",   routeAuth); 
+
      
 server.listen(port, (req, res)=>{ 
     console.log(`app is listing on port ${port}`);

@@ -3,12 +3,12 @@ const SECRET = "King-Ragnor = That+is+My+Name"
 
 function createToken(user){
     const payload = {
-        _id: user._id,
-        name :user.name,
+        id: user.id,
+        full_name :user.full_name,
         email: user.email,
-        contact : user.contact,
         age: user.age,
-        profilePicture: user.profilePicture,
+        bio : user.bio,
+       profile_image_url: user.profile_image_url,
     };
     const token = jwt.sign(payload, SECRET, {expiresIn: "24h"});
     return token;

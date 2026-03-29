@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const {Schema} = mongoose;
 
 const commentSchema = Schema({
-    comment:{
+    comment:{ 
         type:String,
-        required:true,
+        required:true, 
     },
     commitedBy:{
-        type:Schema.Types.ObjectId,
-        ref:"User",
+        type:String,
+        required:true,
     },
     commitedIn:{
         type:Schema.Types.ObjectId,

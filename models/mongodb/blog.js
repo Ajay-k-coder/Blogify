@@ -7,7 +7,7 @@ const blogSchema = Schema({
     title:{
         type:String,
         required:true, 
-    },
+    }, 
     content:{ 
         type:String,
         required:true,
@@ -18,11 +18,11 @@ const blogSchema = Schema({
     }, 
     coverImage:{
         type:String,
-        required:false,
+        required:false, 
     },
     createdBy:{
-        type:Schema.Types.ObjectId,
-        ref:"user",
+        type:String, 
+        required:true
     },
 },
 {timestamps:true}
