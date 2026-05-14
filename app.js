@@ -7,20 +7,22 @@ const cookieParser = require('cookie-parser');
 const {isAuthenticated} = require("./middleware/auth");
 const Blog = require("./models/mongodb/blog");
 const path = require("path");
+const session = require('express-session')
 
 const routeBlog = require("./routes/blog"); 
-const routeAuth = require("./routes/authentication");
-const routeUser = require("./routes/user");
-server.use(express.static(path.join(__dirname, "/public")));
+const routeAuth = require("./routes/authentication"); 
+const routeUser = require("./routes/user"); 
+const flash = require('connect-flash');
+server.use(express.static(path.join(__dirname, "/public"))); 
 
 const methodOverride = require('method-override')
 server.use(methodOverride('_method'));
-
+  
 const port = process.env.PORT || 3000;  
  
 
  
-  
+   
 connectMongoDB();
 server.set("view engine", "ejs");
 server.set("views", path.resolve("views"));
@@ -36,20 +38,41 @@ server.use("/uploads", express.static(path.join(__dirname, "uploads")));
  
 server.use(cookieParser())
 server.use(express.urlencoded({extended:true}));
-server.get("/db-test", async(req, res)=>{
-  try {
-        const [rows] = await mysqlPool.query('SELECT 1 + 1 AS solution');
-        res.send(`MySQL is working! Solution: ${rows[0].solution}`);
-    } catch (err) {
-        res.status(500).send("MySQL Connection Failed");
-    }
-})  
+// server.get("/db-test", async(req, res)=>{
+//   try {
+//         const [rows] = await mysqlPool.query('SELECT 1 + 1 AS solution');
+//         res.send(`MySQL is working! Solution: ${rows[0].solution}`);
+//     } catch (err) {
+//         res.status(500).send("MySQL Connection Failed");
+//     }
+// })  
  
+
+const sessionOption = {
+    secret: "your_secret_key",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Set to true if using HTTPS
+  };
+
+server.use(session(sessionOption));
+server.use(flash());
+
+server.use((req, res, next) => {
+    res.locals.successMsg = req.flash("success");
+    res.locals.errorMsg = req.flash("error");
+    next();
+});
+
 server.get("/", isAuthenticated,async(req, res)=>{
   let allBlogs = await Blog.find(); 
   console.log("user", req.user);
-  res.render("home", { allBlogs });
+  res.render("home", { allBlogs }); 
 }) 
+
+
+
+
   
 server.use("/blog",   isAuthenticated,  routeBlog);
 server.use("/profile", routeUser);
