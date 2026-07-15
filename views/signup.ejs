@@ -3,37 +3,77 @@
 
 
 
-<body class="container text-white" style="background-color:black;">
-    <form  method="post" action="/user/signup" enctype="multipart/form-data">
+<body class="container" >
+    <div class="contianer signup-form" style="padding:3vw; margin-bottom:2vh" >
+        <form  method="post" action="/user/signup" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 20px;">
 
-        <div class="mb-3 mt-4">
-            <label for="formFile" class="form-label">Image</label>
-            <input class="form-control" type="file" id="formFile" name="profilePicture">
-        </div>
+            <!-- <div class="mb-3 mt-4">
+                <label for="formFile" class="form-label">Image</label>
+                <input class="form-control" type="file" id="formFile" name="profilePicture">
+            </div> -->
+            <div class="form-group" style="display: flex; align-items: center; gap: 20px;">
+                <!-- <h3>Profile Picture</h3> -->
+                <img id="avatar-preview" src="https://res.cloudinary.com/dlhall9vy/image/upload/v1783064299/blogify_avatar/ofimrdlgyaukcdcz0by1.png" alt="Current Image" class="avatar-preview"> 
+                <div style="display: flex; flex-direction: column; gap: 5px;" class="avatar-image-container">
+                    <label for="avatar" style="font-weight: bold; color: #94a3b8;">Profile Picture</label>
+                    <input type="file" id="avatar" value="https://res.cloudinary.com/dlhall9vy/image/upload/v1783064299/blogify_avatar/ofimrdlgyaukcdcz0by1.png" name="avatar" accept="image/png, image/jpeg, image/jpg" style="color: #cbd5e1;">
+                </div>
+            </div>
 
-        <label for="full_name" class="form-label"> Full Name </label>
-        <input type="text" name="name" id="fullname" class="form-control">
-        
-        <label for="dob" class="form-label"> Date of Birth</label>
-        <input type="date" name="age" id="dob" class="form-control">
-        
-        <!-- <label for="contact" class="form-label">Contact</label>
-        <input type="number" id="contact" name="contact" class="form-control"> -->
-        
-        <label for="email" class="form-label">Email</label>
-        <input type="email"   name="email" class="form-control">
-        
-        <label for="password" class="form-label">password</label>
-        <input type="password" id="password" autocomplete="section-blue shipping street-address" name="password" class="form-control">
+            <!-- <label for="full_name" class="form-label"> Full Name </label>
+            <input type="text" name="name" id="fullname" class="form-control"> -->
 
-        <label for="address" class="form-label">BIO</label>
-        <input type="address" id="address" name="bio" class="form-control"> 
+            <div for="name" class="form-group" style="display:flex; flex-direction: column;">
+            
+                <label for="name" style="font-weight: bold;">Display Name</label>
+                <input type="text" id="name" name="full_name" required style="padding: 10px; margin-top:-10px; margin-bottom:-8px; border-radius: 5px; border: 1px solid #334155; background: #0f172a; color: #fff; ">
 
-        <div class="d-grid gap-2 col-6 mx-auto mb-5">   
-            <button class="form-control btn btn-primary">SignUp</button>
-        </div>
+            </div >
+            
+                <!-- <label for="dob" class="form-label"> Date of Birth</label>
+                <input type="date" name="age" id="dob" class="form-control"> -->
+            
+            <div for="name" class="form-group" style="display: flex; flex-direction: column; ">
+            
+                <label for="dob" style="font-weight: bold;">Date of Birth</label>
+                <input type="date" id="dob" name="age" required style="padding: 10px; margin-top:-10px; border-radius: 5px; border: 1px solid #334155; background: #0f172a; color: #fff;">
 
-        </form>
-        
+            </div >
+            
+            <!-- <label for="contact" class="form-label">Contact</label>
+            <input type="number" id="contact" name="contact" class="form-control"> -->
+            
+            <!-- <label for="email" class="form-label">Email</label>
+            <input type="email"   name="email" class="form-control"> -->
+
+            <div for="name" class="form-group" style="display: flex; flex-direction: column; gap: 0px;">
+            
+                <label for="email" style="font-weight: bold;">Email</label>
+                <input type="email" id="email" name="email" required style="padding: 10px; margin-top:-10px; border-radius: 5px; border: 1px solid #334155; background: #0f172a; color: #fff;">
+
+            </div >
+            
+            <!-- <label for="password" class="form-label">password</label>
+            <input type="password" id="password" autocomplete="section-blue shipping street-address" name="password" class="form-control"> -->
+
+            <div for="name" class="form-group" style="display: flex; flex-direction: column;">
+                <label for="password" style="font-weight: bold;">Create Password</label>
+                <input type="password" id="password" name="password" required style="padding: 10px; margin-top:-10px; border-radius: 5px; border: 1px solid #334155; background: #0f172a; color: #fff;">
+            </div >
+            <!-- <label for="address" class="form-label">BIO</label>
+            <input type="address" id="address" name="bio" class="form-control">  -->
+            <div class="form-group" style="display: flex; flex-direction: column;">
+                <label for="bio" style="font-weight: bold;">Short Bio</label>
+                <textarea id="bio" rows="3" placeholder="Tell the world about yourself..." name="bio" style="padding: 10px; margin-top:-10px; border-radius: 5px; border: 1px solid #334155; background: #0f172a; color: #fff; resize: vertical;">
+                </textarea>
+            </div>
+
+            <div class="d-grid gap-2 col-6 mx-auto mb-2">   
+                <button class="form-control btn btn-primary">SignUp</button>
+            </div>
+
+            </form>
+            <p style="text-align:center; color:white;"><a href="login" style="color:white; text-decoration: none;">Already have an Account</a></p>
+    </div>   
 </body>
 </html>

@@ -1,26 +1,263 @@
 
 <%- include("layouts/boilerplate") %>
 
-<body  style="background-color:black" class="container text-white">
-    <div class="row align-items-start   ps-3"  >
-        <% allBlogs.forEach( blog => { %>
-       <a href="/blog/<%= blog._id %>" style="text-decoration:none; color:black">
-        <div class="card m-2" style="width: 22rem;">
+<body class="container" style="display:flex; flex-direction: column;">
+         <% if (typeof currentTag !== 'undefined' && currentTag  ) { %>
+    <div class="filter-banner" id="filter-banner">
+        <h6 style="color: #cbd5e1; margin: 0;">
+            <!-- Showing results for: <span style="color: #3b82f6;" class="filter-banner-span"><%= currentTag %></span> -->
+             <% if (currentTag ) { %>
+                    Showing results for: <span style="color: #3b82f6;" class="filter-banner-span currentTag" id="currentTag"><%= currentTag %></span> 
+             <% } %>
+ 
+
+        </h6>
+        <a href="/" class="clear-filter-btn"> ✖</a>
+    </div>
+<% } %>
+
+            <% if ( typeof searchResult !== "undefined" && searchResult) { %>
+                  <span style="color: #3b82f6;" class="filter-banner-span searchResult" id="searchResult"> </span>
+
+             <% } %>
+
+    <div class="feed-btn-container  feed-tabs mb-4" id="feed-btn-container">
+        <button class="explore feed-tabs-btn tab-btn active" id="btn-explore">Explore</button>
+        <% if (locals.user) { %>
+                    <button class="following feed-tabs-btn tab-btn" id="btn-following" >Following</button>
+        <% } %>
+    </div>
+
+    <div class="search-btn-container class_none search-tabs mb-4" id="search-btn-container">
+        <button class="search_blog search-tabs-btn tab-btn active" id="search_blog">Blog</button>
+        <button class="search_author search-tabs-btn tab-btn" id="search_author" >Author</button>
+    </div>
+
+    <div class="allBlogs  container class_block"  id="allBlogs">
+        <div class="global_blog_container" id="blog_container">
+        <% if(allBlogs){ %>
+
             
-            <img src=<%= blog.path %> class="card-img-top img-fluid width:auto height:" alt="...">
-            <li><%= blog.path %></li>
-            <div class="card-body">
-               
-                <h5 class="card-title"><%= blog.title %></h5>
-                <p class="card-text"><%= blog.content.substring(0,40) %>...</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+            <% allBlogs.forEach( blog => { %>
+        
+                <div class="parent blog">
+                    <div class="child1 grid-child">
+                        <img
+                            src="<%= blog.path %>"
+                            alt="image"
+                            class="home_card_image"
+                        />
+                    </div>
+                    <div class="child2 grid-child name-and-date ">   &nbsp; by: <%= blog.author %></div>
+                    <div class="child3 grid-child name-and-date ">   <%= blog.createdAt %></div>
+
+                    <div class="child4 grid-child">
+                        <% 
+                            // Force split if the database accidentally saved a comma-separated string
+                        let displayTags = [];
+                        if (blog.tags.length === 1 && blog.tags[0].includes(',')) {
+                            displayTags = blog.tags[0].split(',');
+                        } else {
+                            displayTags = blog.tags;
+                        }
+
+                        displayTags.forEach(function(tag) { 
+                        %>
+                            <a href="?tag=<%= tag.trim() %>" class="blog-badge" style="text-decoration: none;">
+                                <%= tag.trim() %>
+                            </a>
+                        
+                        <% }); %>
+                            
+                    </div>
+
+                    <div class="child5 grid-child ">
+                        <a href="/blog/<%= blog._id %>" class="home-card-anchor">  <h2 class="title"><%= blog.title %></h2></a>
+                    </div>
+
+                    <div class="child6 grid-child">
+                
+                    <p><%=striptags( blog.content).substring(0,80) %>...</p>
+                
+                    </div>
+                </div>
+                    
+    
+            <% }) %>
+        <% }%>
+       
+
+
+        <% if(allBlogs.length === 0){ %>
+
+            <div class="empty-post-state">
+                <div class="empty-post-icon-wrapper">
+                    <svg class="empty-doc-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+            
+                <h2 class="empty-post-title">No Articles Here</h2>
+                <p class="empty-post-subtitle">It looks like there are no posts matching your current search or selected tag. Clear your filters or be the first to write about this!</p>
+            
+                <div class="empty-post-actions">
+                    <a href="/" class="btn-outline">Clear Filters</a>
+                    <a href="/blog/new" class="btn-primary">Write a Post</a>
+                </div>
+            </div>
+            <% }%>
+        </div>
+
+    <div id="scroll-trigger" class="global_feed" style="text-align: center; padding: 30px; color: #94a3b8;">
+        <p>Loading more posts...</p>
+    </div>
+
+ 
+</div>
+
+
+
+
+    <div class="authors container class_none" id="authors">
+       <% if (typeof authors !== "undefined") { %> 
+        
+            <% authors.forEach( author => { %>
+                
+                <div class="card author">
+                    <div class="author_image author_child first_row">
+                        <img src="<%=author.profile_image_url%>" alt="profile image" style="border-radius: 50px;">
+                    </div>
+                    <div class="author_name author_child first_row">
+                        <h3> 
+                            <%=author.full_name %>
+         
+                        </h3>
+                    </div>
+
+                    <div class="author_posts author_child last_row"><span class="count"><%=author.posts%> </span>post </div>
+                    <div class="author_followers author_child last_row">   
+                          <span class="count"><%=author.followerRows %> </span>    followers
+                    </div>
+         
+                    <div class="author_following author_child last_row"><span class="count"><%=author.followingRows%></span> following</div>
+                    
+                    
+                </div>
+
+            <%})%>
+        <% } %>
+        <% if ( typeof authors !==  "undefined") { %> 
+            <% if ( authors.length === 0) { %> 
+
+    
+           <div class="search-container">
+   
+                <div class="empty-state-box">
+                    <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"></path>
+                    </svg>
+                    
+                    <h2 class="empty-title">No Authors Found</h2>
+                    <p class="empty-subtitle">We couldn't find anyone matching "<b><%= searchResult %></b>". Double-check your spelling or try searching for something else.</p>
+                    
+                   
+                </div>
+
             </div>
             
-        </div>
-        </a>
-   
-    <% }) %>
+         <% } %>
+     <% } %>
+
+        
+
     </div>
+
+
+    <div class="followingsBlogs container class_none " id="followingsBlogs">
+        <div class="following_blog_container" id="blog_container">
+        
+        <% followingsBlogs.forEach( blog => { %>
+
+                <div class="parent blog">
+                    <div class="child1 grid-child">
+                        <img
+                            src="<%= blog.path %>"
+                            alt="image"
+                            class="home_card_image"
+                        />
+                    </div>
+                    <div class="child2 grid-child name-and-date ">   &nbsp; by: <%= blog.author %></div>
+                    <div class="child3 grid-child name-and-date ">   <%= blog.createdAt %></div>
+
+                    <div class="child4 grid-child">
+                        <% 
+                            // Force split if the database accidentally saved a comma-separated string
+                        let displayTags = [];
+                        if (blog.tags.length === 1 && blog.tags[0].includes(',')) {
+                            displayTags = blog.tags[0].split(',');
+                        } else {
+                            displayTags = blog.tags;
+                        }
+
+                        displayTags.forEach(function(tag) { 
+                        %>
+                            <a href="?tag=<%= tag.trim() %>" class="blog-badge" style="text-decoration: none;">
+                                <%= tag.trim() %>
+                            </a>
+                        
+                        <% }); %>
+                            
+                    </div>
+
+                    <div class="child5 grid-child ">
+                        <a href="/blog/<%= blog._id %>" class="home-card-anchor">  <h2 class="title"><%= blog.title %></h2></a>
+                    </div>
+
+                    <div class="child6 grid-child">
+                
+                    <p><%=striptags( blog.content).substring(0,80) %>...</p>
+                
+                    </div>
+                </div>
+                
+ 
+   
+        <% }) %>
+
+ 
+            <%if(followingsBlogs.length === 0){%>
+
+          
+            <div class="empty-invite-state">
+        <div class="empty-invite-icon-wrapper">
+            <svg class="empty-community-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+        </div>
+    
+        <h2 class="empty-invite-title">Curate Your Custom Feed</h2>
+        <p class="empty-invite-subtitle">You aren't following any authors yet! Discover brilliant writers on the Global feed and click 'Follow' to build your personalized reading list right here.</p>
+        
+        <a href="/profile/suggested" class="btn-primary" style="margin-top: 10px;">
+            Explore Authors 🚀
+        </a>
+        </div>
+
+
+
+        <%}%>
+
+        <%if(followingsBlogs.length !== 0){%>
+        </div>
+            <div id="scroll_trigger_following_feed" class="following_feed" style="text-align: center; padding: 30px; color: #94a3b8;">
+        <p>Loading more posts...</p>
+        </div>
+    <% } %>
+ 
+    </div>
+
+  
+    
     
 </body>
-</html>
+ 

@@ -15,16 +15,21 @@
     "bcrypt": "^6.0.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.7",
+    "date-fns": "^4.4.0",
     "dotenv": "^17.3.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-session": "^1.19.0",
     "jsonwebtoken": "^9.0.2",
+    "marked": "^18.0.4",
     "method-override": "^3.0.0",
     "mongoose": "^8.19.2",
     "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0",
     "mysql2": "^3.20.0",
     "nodemailer": "^8.0.4",
+    "remove-markdown": "^0.6.4",
+    "striptags": "^3.2.0",
     "uuid": "^11.1.0"
   }
 }

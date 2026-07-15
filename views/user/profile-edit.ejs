@@ -1,0 +1,131 @@
+<%- include("../layouts/boilerplate") %>
+
+<body class="container">
+  <div
+    class="edit-profile-container"
+    style="
+      max-width: 600px;
+      margin: 40px auto;
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 10px;
+      color: #cbd5e1;
+    "
+  >
+    <h2 style="color: #fff; margin-bottom: 20px">Edit Profile</h2>
+    <form action="/profile/edit" method="post"></form>
+
+    <form
+      action="/profile/edit"
+      method="post"
+      enctype="multipart/form-data"
+      style="display: flex; flex-direction: column; gap: 20px"
+    >
+      <div
+        class="form-group"
+        style="display: flex; align-items: center; gap: 20px"
+      >
+        <!-- <h3>Profile Picture</h3> -->
+        <img
+          id="avatar-preview"
+          src=" <%=userInfo.profile_image_url%> "
+          alt="Current Image"
+          style="
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #3b82f6;
+          "
+        />
+        <div style="display: flex; flex-direction: column; gap: 5px">
+          <label for="avatar" style="font-weight: bold; color: #94a3b8"
+            >Profile Picture</label
+          >
+          <input
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/png, image/jpeg, image/jpg"
+            style="color: #cbd5e1"
+          />
+        </div>
+      </div>
+      <div
+        for="name"
+        class="form-group"
+        style="display: flex; flex-direction: column; gap: 5px"
+      >
+        <label for="name" style="font-weight: bold">Display Name</label>
+        <input
+          type="tex"
+          value="<%=userInfo.full_name%>"
+          id="name"
+          name="full_name"
+          required
+          style="
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: #fff;
+          "
+        />
+      </div>
+
+      <div
+        class="form-group"
+        style="display: flex; flex-direction: column; gap: 5px"
+      >
+        <label for="bio" style="font-weight: bold">Short Bio</label>
+        <textarea
+          id="bio"
+          rows="4"
+          placeholder="Tell the world about yourself..."
+          name="bio"
+          style="
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: #fff;
+            resize: vertical;
+          "
+        >
+                <%= userInfo.bio %>
+            </textarea
+        >
+      </div>
+
+      <input type="hidden" value="<%=userInfo.email%>" name="email" />
+
+      <div
+        for="name"
+        class="form-group"
+        style="display: flex; flex-direction: column"
+      >
+        <label for="password" style="font-weight: bold">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="For confirmation"
+          required
+          style="
+            padding: 10px;
+            margin-top: -10px;
+            border-radius: 5px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: #fff;
+          "
+        />
+      </div>
+
+      <button type="submit" class="submit-button">Save Changes</button>
+      <a href="/profile/<%=userInfo.userId %>" class="cancel-btn"
+        >Cancel and go back</a
+      >
+    </form>
+  </div>
+</body>

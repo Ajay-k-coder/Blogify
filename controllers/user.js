@@ -38,7 +38,7 @@ async function userSignUpHandler(req, res, next){
     // console.log("body = ",body);
 
 
-    body.profilePicture = "/" + file.path; 
+    body.profilePicture =  file.path; 
     body.age = getAge(body.age);
       body.id = uuidv4();
       // console.log(body);
@@ -134,7 +134,7 @@ const newOTP = new OTP(info);
 
 
 async function userLoginHandler(req, res, next){
-    const body = await req.body;
+    const body =  req.body;
     console.log("login body = ", body);
     console.log("email",body.email);
     let user;
@@ -144,7 +144,7 @@ async function userLoginHandler(req, res, next){
     [ body.email]
     );
     user = results;
-     
+      
     console.log("results =", results);
   } catch (err) {
     console.log(err);
@@ -171,7 +171,7 @@ async function userLoginHandler(req, res, next){
         res.cookie("auth_token", token, {httpOnly: true});
         req.user = user[0];
         
-        res.redirect("/");
+        res.redirect("/home");
          
       }
       else{
@@ -182,7 +182,7 @@ async function userLoginHandler(req, res, next){
       }
 
       
-      return next();
+      // return next();
        
   });
 }

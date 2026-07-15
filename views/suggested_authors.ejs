@@ -1,0 +1,53 @@
+<%- include("layouts/boilerplate") %>
+ 
+<body>
+      
+    <div class="suggested-header">
+        <h2>Discover Great Writers</h2>
+        <p>Follow a few authors to curate your personalized reading feed.</p>
+    </div>
+ <!-- <div class="suggested-footer">
+        <a href="/home" class="btn-outline">Skip for now</a>
+    </div> -->
+    <div class="author-list">
+        <div class="author_contianer" id="author_contianer">
+        <% authors.forEach(function(author) { %>
+            <div class="author-card">
+                <div class="author-info">
+                    <img 
+                        src="<%= author.profile_image_url ? author.profile_image_url : '/images/default-avatar.png' %>" 
+                        alt="<%= author.full_name %>" 
+                        class="author-avatar"
+                    >
+                    <div class="author-details">
+                      <a class="author_detail_anchor" href="/profile/<%= author.id%>"> <h3><%= author.full_name %></h3></a> 
+ 
+                    </div>  
+                </div>
+                
+                <!-- <form action="/follow/<%= author.id %>" method="POST"> -->
+               <% if(author.isFollowing){%>
+                    <button type="submit" class="btn-following follow_button" data-user-id="<%=author.id%>">Following</button>
+
+              <%  }%>
+              
+              <% if(!author.isFollowing){%>
+                    <button type="submit" class="btn-follow follow_button" data-user-id="<%=author.id%>">Follow</button>
+
+              <%  }%>
+
+                <!-- </form> -->
+            </div>
+
+        <% }); %>
+        </div>
+    </div>
+
+   
+    <div id="more_user_loader" class="more_user" style="text-align: center; padding: 30px; color: #94a3b8;">
+        <p>Loading more posts...</p>
+        </div>
+</div>
+        
+</body>
+</html>

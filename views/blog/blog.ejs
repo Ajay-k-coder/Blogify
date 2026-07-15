@@ -1,5 +1,5 @@
 <%- include("../layouts/boilerplate") %>
-<body class="container bg-dark text-white">
+
     <!-- <div>
         <h1> Hello <%- blog.title %></h1>
         <img src="<%-blog.path %>" class="img-fluid">
@@ -53,60 +53,125 @@
 </div> -->
 
 
-<div class="container blog-container">
-    <h1 class="blog-title"><%= blog.title %></h1>
 
-   <div class="d-flex align-items-center mb-4 text-muted"> 
-        <img src="<%= author[0].profile_image_url %>" class="user-avatar me-2">
-        <span>By <strong><a href="/profile/<%= author[0].id %>" class="userLink"><%= author[0].full_name %></a></strong> • <%= new Date(blog.createdAt).toLocaleDateString() %></span>
-    </div> -
-
-    <% if (blog.path) { %>
-        <img src="<%= blog.path %>" class="blog-image shadow-sm">
+   
+   <!-- <button class="bookmark-button" id="bookmark-button" data-blog-id="<%= blog._id %>">
+     <% if (!bookmarkStatus) { %>
+         <i class="fa-regular fa-bookmark"> </i>
     <% } %>
-
-    <div class="blog-content">
-        <%= blog.content %>
-    </div>
-
-    <hr class="my-5">
-
-    <section id="comments">
-        <h3 class="mb-4">Comments (<%= comments.length %>)</h3>
-
-        <% if (locals.user) { %>
-            <form action="<%= blog._id %>/comment" method="POST" class="mb-5">
-                <div class="input-group">
-                    <input type="text" name="content" class="form-control" placeholder="Add a comment..." required>
-                    <button class="btn btn-primary" type="submit">Post</button>
-                </div>
-            </form>
+        <% if (bookmarkStatus) { %>
+            <i class="fa-solid fa-bookmark"></i>
         <% } %>
-
-        <% comments.forEach(comment => { %>
-            <div class="comment-card card mb-3 shadow-sm p-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div class="d-flex align-items-center">
-                        <img src="<%= comment.profile_image_url %>" class="user-avatar me-2">
-                        <span class="fw-bold"><%= comment.full_name %></span>
-                    </div>
-                    <small class="text-muted"><%= new Date(comment.created_at).toLocaleDateString() %></small>
-                    <% if (locals.user && locals.user.id === comment.user_id) { %>
-                    <form  method="POST" action="<%= blog._id %>/comment/<%= comment.commentId %>?_method=DELETE" onsubmit="return confirm('Delete this comment?')">
-                        <input type="hidden" name="blogId" value="<%= blog._id %>">
-                        <button type="submit" class="btn btn-sm btn-outline-danger border-0">
-                            <i class="bi bi-trash"></i> Delete 
-                        </button>
-                    </form>
-                <% } %>
-                </div>
-                <p class="mb-0 text-secondary" style="margin-left: 48px;"><%= comment.content %></p>
-            </div>
-            <hr>
           
-        <% }) %>
-    </section>
-</div>
+   </button>  -->
+
+   <!-- <i class="fa-solid fa-bookmark"></i> -->
+
+
+
+   <!-- <div class="d-flex align-items-center text-muted"> 
+        <img src="<%= author[0].profile_image_url %>" class="user-avatar me-2" style="width:30px; max-height:30px; border-radius:50px; border:1px solid white;">
+        <span style="color:white;">By <strong><a href="/profile/<%= author[0].id %>" class=""><%= author[0].full_name %></a></strong> • <%= new_date%></span>
+    </div> 
+     -->
+
+<body class="container"> 
+    <div class="blog-field container"> 
+        <div class="article-meta-row post-meta-data">
+            
+            <div class="author-details" >
+        
+                <img src="<%= author[0].profile_image_url %>" alt="Author" style="width: 40px; height: 40px; border-radius: 50%;">
+                <span style="color: #cbd5e1;">By <strong> <a href="/profile/<%=author[0].id %>"> <%= author[0].full_name %> </a></strong></span>
+                    
+            
+                <span style="color: #94a3b8; font-size: 0.9em; margin-left: 10px;"><%= new_date %></span>
+            </div>
+
+            <div class="action-buttons" >
+                <button id="like-button" class="action-btn like-button" data-blog-id="<%= blog._id %>" style="background: none; border: none; color: #3b82f6; cursor: pointer; font-size: 1.2rem;">
+                        <% if (!isLiked) { %>
+                            <i class="fa-regular fa-heart"></i> 
+                            
+                        <% } %>
+                        <% if (isLiked) { %>
+                            <i class="fa-solid fa-heart"></i>
+                        
+                        <% } %>
+                    <span id="like-count" style="font-size: 1rem; margin-left: 5px;" class="like=count"><%= likeCount %> </span>
+
+                </button>
+        
+                <button class="bookmark-button" id="bookmark-button" data-blog-id="<%= blog._id %>" style="background: none; border: none; color: #cbd5e1; cursor: pointer; font-size: 1.2rem;">
+                    <% if (!bookmarkStatus) { %>
+                        <i class="fa-regular fa-bookmark"> </i>
+                    <% } %>
+                        <% if (bookmarkStatus) { %>
+                            <i class="fa-solid fa-bookmark"></i>
+                        <% } %>
+                    
+                </button>
+            </div>
+        </div>
+
+        <div class="title"> 
+            <h1><%= blog.title %></h1>
+
+        <% if (blog.path) { %>
+            <img src="<%= blog.path %>" class="blog-image shadow-sm">
+        <% } %>
+            </div>
+        
+
+        <!-- <hr> -->
+
+        <div class="content">
+            <!-- <%= blog.content %> -->
+            <%- blog.content %>
+        </div>
+
+        <hr class="my-5">
+
+        <section id="comments">
+            <h3 class="mb-4">Comments (<%= comments.length %>)</h3>
+
+            <% if (locals.user) { %>
+                <form action="<%= blog._id %>/comment" method="POST" class="mb-5">
+                    <div class="input-group">
+                        <input type="text" name="content" class="form-control" placeholder="Add a comment..." required>
+                        <button class="btn btn-primary comment-btn" type="submit">comment</button>
+                    </div>
+                </form>
+            <% } %>
+
+            <% comments.forEach(comment => { %>
+                <div class="comment-container">
+                    <div class="cmt-card d-flex">
+                        <div class="d-flex commenter">
+                            <img src="<%= comment.profile_image_url %>">
+                            <p class="fw-bold commneter-meta-data"><%= comment.full_name %></p>
+                        </div>
+                        <div>
+                        <small class="text-white commneter-meta-data"><%= comment.created_at %></small>
+                        </div>
+                        
+                        <% if (locals.user && locals.user.id === comment.user_id) { %>
+                        <form  method="POST" action="<%= blog._id %>/comment/<%= comment.commentId %>?_method=DELETE" onsubmit="return confirm('Delete this comment?')">
+                            <input type="hidden" name="blogId" value="<%= blog._id %>">
+                            <button type="submit" class="btn btn-sm btn-outline-danger border-0">
+                                <i class="bi bi-trash commneter-meta-data"></i> Delete 
+                            </button>
+                        </form>
+                    <% } %>
+                    
+                    </div>
+                    <p class="comment-data" style="margin-left: 30px "><%= comment.content %></p>
+                </div>
+                <hr>
+            
+            <% }) %>
+        </section>
+    </div>
 
     
 </body>

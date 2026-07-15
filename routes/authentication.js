@@ -6,7 +6,7 @@ const multer  = require('multer')
 const OTP = require("../models/mongodb/forOTP");
 const {mysqlPool} = require("../config/db");
 const {createToken} = require("../service/authentication");
-
+const upload = require("../config/upload");
 server.use(express.json());     
 server.use(express.urlencoded({extended:true}));
 // server.use(require("connect-flash"));
@@ -20,22 +20,24 @@ const {userSignUpHandler,
     userLoginHandler
 } = require("../controllers/user");
  
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/usersImages");
-  },
-  filename: function (req, file, cb) {
-    const uniquePreffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    console.log("Unique prefix generated:", uniquePreffix);
-    cb(null, uniquePreffix+ '-' + file.originalname);
-  }
-});
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, "uploads/usersImages");
+//   },
+//   filename: function (req, file, cb) {
+//     const uniquePreffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//     console.log("Unique prefix generated:", uniquePreffix);
+//     cb(null, uniquePreffix+ '-' + file.originalname);
+//   }
+// });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
+
+
 
 router.get("/signup", (req, res, next)=>{
     res.render("../views/signup", {user: req.user});
-    next();
+    
 });
 
 router.get("/auth/otp", (req, res, next)=>{
@@ -44,7 +46,7 @@ router.get("/auth/otp", (req, res, next)=>{
 
 })
 
-
+ 
 router.post("/auth/otp", async(req, res)=>{
    try {
   const result = req.body.otp;
@@ -105,7 +107,7 @@ router.post("/auth/otp", async(req, res)=>{
        
 
     
-    res.redirect("/");
+    res.redirect("/home");
 
   } catch (error) {
     console.error("Error verifying OTP:", error);
@@ -116,18 +118,20 @@ router.post("/auth/otp", async(req, res)=>{
 }) 
 
 router.post("/signup", upload.single("profilePicture") ,userSignUpHandler);
+
 router.post("/login", userLoginHandler); 
+
  
 router.get("/login",(req, res, next)=>{
-    res.render("../views/login",{user: req.user})
-    next(); 
+    return res.render("../views/login",{user: req.user})
+    
 })
 
 
 router.get("/logout",(req, res, next)=>{ 
     res.clearCookie("auth_token");
-    res.redirect("/");
-    next();
+    return res.redirect("/home");
+    // next();
 });
 
 

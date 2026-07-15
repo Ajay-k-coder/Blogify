@@ -1,5 +1,5 @@
  
-<body>
+
     <!-- <nav class="navbar navbar-expand-lg  bg-dark bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -19,6 +19,8 @@
         </li>
         <li class="nav-item dropdown ">
          -->
+         
+
             
 
           <!-- <% if (locals.user) { %>
@@ -45,7 +47,7 @@
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Account
           </a>
-          <ul class="dropdown-menu" style="width:25vw">
+          <ul class="dropdown-menu" style="width:25vw"> 
             <li class="dropdown-item">
               <a class="nav-link" href="/user/signup">Create Account</a>
             </li>
@@ -61,21 +63,39 @@
   </div>
 </nav> -->
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark shadow-sm">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="/">BLOGIFY</a>
-    <div class="navbar-nav ms-auto">
-      <a class="nav-link" href="/">Home</a>
-       <a class="nav-link" href="/blog/new">Write</a>
-      <% if (locals.user) { %>
-        <img src="<%= user.profile_image_url %>" width="35" height="35" class="rounded-circle ms-2">
-         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-             <%= user.email %>
-          </a>
-          <ul class="dropdown-menu" style="width:25vw">
-            <li><img src="<%= user.profile_image_url %>"  width= "70px" height="70px"  class="border border-white m-2 rounded-circle"  alt="..."> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <%= user.full_name%>  </li>
 
-              <li class="dropdown-item border-top p-3" href="#"> <span >Email </span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.email %></li>
+<body class="container">
+<nav  class="navbar sticky-top mt-1 navbar-expand" >
+  <div class="container">
+  
+    <a class="logo_container" href="/home">
+   
+         <!-- <img src="\images\logo_canva_copy.svg" style="color:white" class="logo_image" alt="blogify_logo" > -->
+         <span style="font-weight:900; font-size:20px;" >Blogify</span>
+
+<!-- </svg> -->
+     </a>
+      <div class="searchbox searchbox-inside-navbar">
+    
+        <form action="/home" method="GET" >
+              <input type="text" name="search" placeholder="Enter Author name or Blog title..." class="searchbox_input">
+              <button type="submit" class="searchbox_button">seach</button>
+        </form>
+      </div>
+
+    <div class="navbar-nav   text-white">
+      <a class="nav-link  text-white" href="/home">Home</a>
+       <a class="nav-link text-white" href="/blog/new">Write</a>
+      <% if (locals.user) { %>
+
+         <a class="nav-link " href="/profile/<%=user.id%>">
+                    <img src="<%= user.profile_image_url %>" width="35" height="35" class="rounded-circle ms-2">
+            <!-- <span style="color:white;"> <%= user.email %></span> -->
+          </a>
+
+          <!-- <ul class="dropdown-menu" style="width:25vw"> -->
+
+              <!-- <li class="dropdown-item border-top p-3" href="#"> <span >Email </span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.email %></li>
              
               <li class="dropdown-item border-top p-3" href="#"> <span>Age</span> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <%= user.age %></li>
            
@@ -83,14 +103,21 @@
             
               <li class="align-middle"> <a class="dropdown-item border-top p-3" href="/user/logout" style="text-align:center"> Logout </a></li>
               <a class="nav-link" href="/user/logout">Logout</a>
-      </ul>
+      </ul> -->
         
       <% } else { %> 
-        <a class="nav-link text-primary" href="/user/login">Login</a>
-        <a class="btn btn-primary btn-sm ms-2" href="/user/signup">Get Started</a>
+        <a class="nav-link  text-white" href="/user/login">Login</a>
+        <a class="nav-link text-white get-start" href="/user/signup">signup</a>
       <% } %>
     </div>
   </div>
+
+ 
+ <div class="searchbox searchbox-outside-navbar">   
+        <form action="/home" method="GET">
+              <input type="text" name="search" placeholder="Enter Author name or Blog title... " class="searchbox_input form-control"><button type="submit" class="searchbox_button">seach</button>
+        </form>
+      </div>
 </nav>
 
 <% if (locals.error) { %>
@@ -99,6 +126,6 @@
     <!-- <button type="button" class="btn-close" aria-label="Close"></button> -->
   </div>
 <% } %>
-
+ 
 </body>
  
