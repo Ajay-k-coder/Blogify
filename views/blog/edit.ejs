@@ -5,9 +5,6 @@
         <form action="/blog/edit/<%= blog._id %>" method="POST" enctype="multipart/form-data" class="container" >
 
             <div class="mt-3 d-flex">
-                    <!-- <button> -->
-                <!-- <label for="title" class="title-label">Title</label> -->
-                <!-- </button> -->
                 <input type="text" class="form-control" id="title" name="title" value="<%= blog.title %>" placeholder="Title..." required>
             </div>
             
@@ -16,34 +13,7 @@
                 <input class="form-control image-input" type="file" id="image-input"  name="image"   accept="image/*" style="max-width:800px;"> 
 
             </div>
-                <!-- <label for="formFile" class="form-label">Choose New Image</label> -->
-
-                <!-- <small class="text-muted">Choose an image file to upload</small> -->
-                 
-
-
-
-            <!-- <div class="write-form-container">
-                <label for="content" class="form-label">Content</label>
-                <div class="editor-wrap">
-                    <div class="toolbar">
-                        <button title="Bold" class="toolbar-btn btn-light" id="bold-btn"><i class="bi bi-type-bold"></i></button>
-                        <button title="Italic" class="toolbar-btn btn-light" id="italic-btn"><i class="bi bi-type-italic"></i></button>
-                        <button title="Underline" class="toolbar-btn btn-light" id="underline-btn"><i   class="bi bi-type-underline"></i></button>
-                        <button title="Strikethrough" class="toolbar-btn btn-light" id="strikethrough-btn"><i class="bi bi-type-strikethrough"></i></button>
-                        <button title="Code" class="toolbar-btn btn-light" id="code-btn"><i    class="bi bi-code-slash"></i></button>
-                        <button title="Link" class="toolbar-btn btn-light" id="link-btn"><i    class="bi bi-link-45deg"></i></button>
-                        <button title="Unordered List" class="toolbar-btn btn-light" id="unordered-list-btn"><i class="bi bi-list-ul"></i></button>
-                        <button title="Ordered List" class="toolbar-btn btn-light" id="ordered-list-btn">  <i class="bi bi-list-ol"></i></button> 
-                        <button type="submit" class="create-btn">Preview</button>
-                    </div>
-                    
-                   
-                    <textarea class="form-control" id="content" rows="3" name="content"  required><%= blog.content %></textarea>
-               
-                    
-                </div>
-            </div> -->
+ 
              <div class="form-group">
                 <label for="tags">Tags</label>
                 <input
@@ -59,21 +29,7 @@
 
                         <div class="write-form-container">
                 <label for="content" class="form-label">Content</label>
-                <!-- <div class="editor-wrap">
-                    <div class="toolbar">
-                        <button type="button" title="Bold" class="toolbar-btn btn-light" id="bold-btn"><i class="bi bi-type-bold"></i></button>
-                        <button type="button" title="Italic" class="toolbar-btn btn-light" id="italic-btn"><i class="bi bi-type-italic"></i></button>
-                        <button type="button" title="Underline" class="toolbar-btn btn-light" id="underline-btn"><i   class="bi bi-type-underline"></i></button>
-                        <button type="button" title="Strikethrough" class="toolbar-btn btn-light" id="strikethrough-btn"><i class="bi bi-type-strikethrough"></i></button>
-                        <button type="button" title="Code" class="toolbar-btn btn-light" id="code-btn"><i    class="bi bi-code-slash"></i></button>
-                        <button type="button" title="Link" class="toolbar-btn btn-light" id="link-btn"><i    class="bi bi-link-45deg"></i></button>
-                        <button type="button" title="Unordered List" class="toolbar-btn btn-light" id="unordered-list-btn"><i class="bi bi-list-ul"></i></button>
-                        <button type="button" title="Ordered List" class="toolbar-btn btn-light" id="ordered-list-btn">  <i class="bi bi-list-ol"></i></button> 
-                       
-                    </div>
-                    
-                   
-                    <textarea class="form-control" id="content" rows="3" name="content" required></textarea> -->
+               
             <div class="editor-wrap mb-3 mt-4" style=" min-height:40vh; background-color: #e6e6e6; color: white; border-radius: 8px; border: 1px solid #475569; margin-bottom: 20px;">
                     <div class="quill-contianer "  id="quill-contianer" style="min-height: 400px !important; font-size: 16px; border: none; color:black">
                        <%- blog.content %>

@@ -2,29 +2,26 @@
 <%- include("layouts/boilerplate") %>
 
 <body class="container" style="display:flex; flex-direction: column;">
-         <% if (typeof currentTag !== 'undefined' && currentTag  ) { %>
-    <div class="filter-banner" id="filter-banner">
-        <h6 style="color: #cbd5e1; margin: 0;">
-            <!-- Showing results for: <span style="color: #3b82f6;" class="filter-banner-span"><%= currentTag %></span> -->
-             <% if (currentTag ) { %>
-                    Showing results for: <span style="color: #3b82f6;" class="filter-banner-span currentTag" id="currentTag"><%= currentTag %></span> 
-             <% } %>
- 
+    <% if (typeof currentTag !== 'undefined' && currentTag  ) { %>
+        <div class="filter-banner" id="filter-banner">
+            <h6 style="color: #cbd5e1; margin: 0;">
+                <% if (currentTag ) { %>
+                        Showing results for: <span style="color: #3b82f6;" class="filter-banner-span currentTag" id="currentTag"><%= currentTag %></span> 
+                <% } %>
+            </h6>
+            <a href="/" class="clear-filter-btn"> ✖</a>
+        </div>
+    <% } %>
 
-        </h6>
-        <a href="/" class="clear-filter-btn"> ✖</a>
-    </div>
-<% } %>
+    <% if ( typeof searchResult !== "undefined" && searchResult) { %>
+        <span style="color: #3b82f6;" class="filter-banner-span searchResult" id="searchResult"> </span>
 
-            <% if ( typeof searchResult !== "undefined" && searchResult) { %>
-                  <span style="color: #3b82f6;" class="filter-banner-span searchResult" id="searchResult"> </span>
-
-             <% } %>
+    <% } %>
 
     <div class="feed-btn-container  feed-tabs mb-4" id="feed-btn-container">
         <button class="explore feed-tabs-btn tab-btn active" id="btn-explore">Explore</button>
         <% if (locals.user) { %>
-                    <button class="following feed-tabs-btn tab-btn" id="btn-following" >Following</button>
+            <button class="following feed-tabs-btn tab-btn" id="btn-following" >Following</button>
         <% } %>
     </div>
 
@@ -36,10 +33,7 @@
     <div class="allBlogs  container class_block"  id="allBlogs">
         <div class="global_blog_container" id="blog_container">
         <% if(allBlogs){ %>
-
-            
             <% allBlogs.forEach( blog => { %>
-        
                 <div class="parent blog">
                     <div class="child1 grid-child">
                         <img
@@ -112,10 +106,7 @@
         <p>Loading more posts...</p>
     </div>
 
- 
-</div>
-
-
+    </div>
 
 
     <div class="authors container class_none" id="authors">

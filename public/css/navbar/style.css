@@ -1,7 +1,6 @@
 .get-start {
     background-color: rgb(220, 0, 0);
     color: white;
-    /* border:1px solid white; */
     padding: 5px 10px;
     border-radius: 5px;
 }
@@ -9,16 +8,12 @@
 .navbar {
     display: flex;
     justify-content: space-between;
-
-    /* background-color: black; */
     @media (max-width: 768px) {
         flex-direction: column;
     }
 }
 
 .navbar {
-    /* background-color:rgb(4, 17, 59) */
-    /* background-color: #1e293b; */
     background-color: #0f172a;
     border-bottom: 1px solid #334155;
 }
@@ -27,7 +22,6 @@
     width: 150px;
     color: white;
     padding: 0px;
-    /* border: 1px solid blue; */
 }
 
 .logo_image {
@@ -36,40 +30,12 @@
     width: 150px;
 }
 
-/* .searchbox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid darkgreen;
-    padding: 0px;
-    
-}
-
-input[type="text"] {
-    padding: 0px;
-
-    border: 2px solid blue;
-    margin-top: 20px;
-    font-weight: 500;
-}
-
-.searchbox_button {
-    padding: 5px 10px;
-
-    font-size: 1.4rem;
-    border-radius: 0px 10px 10px 0px;
-}
-
-
- */
-
 /* Container styling: Centers the box and sets the shape */
 .searchbox {
     display: flex;
 
     width: 50%;
     max-width: 600px;
-    /* border: 1px solid red; */
     padding: 0px;
 
     @media (max-width: 800px) {
@@ -79,13 +45,10 @@ input[type="text"] {
 
 .searchbox form {
     display: flex;
-
     align-items: center;
     width: 100%;
-    /* margin-top: -20px; */
     max-width: 600px; /* Adjust this to fit nicely in your navbar */
     margin: 0 auto; /* Helps center it in the navbar flex container */
-    /* background: #ffffff; */
     border-radius: 50px;
     border: 1px solid #e0e0e0;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Soft baseline shadow */
@@ -111,11 +74,9 @@ input[type="text"] {
     align-self: center !important;
     margin-bottom: 0px !important;
     color: #333 !important;
-    /* color: white; */
     background-color: white !important;
     outline: none; /* Removes the ugly default browser outline */
     background: transparent;
-    /* border: 2px solid blue; */
     border-radius: 0px;
 }
 
@@ -129,8 +90,6 @@ input[type="text"] {
     /* margin-top: -4px; */
     font-weight: 600;
     cursor: pointer;
-    /* border-radius: 20px 20px 30px 10px; */
-    /* border: 3px solid darkgreen; */
     transition: background-color 0.2s ease;
 }
 

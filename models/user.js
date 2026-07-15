@@ -1,11 +1,10 @@
 // const mongoose = require("mongoose");
 // const {Schema} = mongoose;
 
-
 // const userSchema = Schema({
-//     name:{ 
+//     name:{
 //         type:String,
-//         required:true, 
+//         required:true,
 //     },
 //     age:{
 //         type:Number,
@@ -34,6 +33,5 @@
 //     }
 // });
 
-
 // const User = mongoose.model("User", userSchema);
-// module.exports = User;    
+// module.exports = User;

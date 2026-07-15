@@ -1,49 +1,9 @@
-// const express = require("express");
-// const multer  = require('multer')
-// const upload = multer({ dest: 'uploads/' })
-
-// const Blog = require("../models/Blog");
 const Blog = require("../models/mongodb/blog");
-
-// async function  createBlogHandler(req, res, next){
-//     try{
-//         if(req.file){
-//             const file = req.file;
-//             body.path = file.path;
-//         }
-
-//         // console.log("Uploaded file:", file);
-//         // console.log("File stored at:", file.path);
-//         const body = req.body;
-//         console.log("body", body);
-
-//         // console.log("user Info", req.user);
-//         if(req.user){
-//             body.createdBy = req.user.id;
-//             body.author = req.user.full_name;
-//         }
-
-//         console.log("body", body);
-//         // console.log(file.path);
-//         const newBlog = new Blog(body);
-//         // console.log("new blog = ", newBlog);
-//         // console.log("id of new blog = ", newBlog._id);
-//         await newBlog.save();
-//         // res.send("done")
-//         // res.redirect("/blog/preview/" + newBlog._id);
-//         return res.redirect("/home");
-//     }catch(error){
-//         console.log("error", error);
-//         return res.status(500).send("Something went wrong while creating your post. Please try again.");
-//     }
-
-// }
 
 async function createBlogHandler(req, res, next) {
     try {
         // 1. Capture the text data from Quill and the title
         const body = req.body;
-
         // 2. Safely check if an image was actually uploaded before grabbing the path
         if (req.file) {
             body.path = req.file.path; // Cloudinary URL
@@ -57,7 +17,6 @@ async function createBlogHandler(req, res, next) {
             body.createdBy = req.user.id;
             body.author = req.user.full_name;
         }
-
         // 4. Create and save the new blog post
         let tagsArray = [];
         if (body.tags) {
@@ -96,7 +55,7 @@ async function editBlogHandler(req, res, next) {
     const blog = await Blog.findOne({ _id: id });
     blog.content = body.content;
     blog.title = body.title;
-    console.log("body.tags ", body.tags);
+
     let tagsArray = [];
     if (body.tags) {
         // Split by comma, then map over the array to trim whitespace

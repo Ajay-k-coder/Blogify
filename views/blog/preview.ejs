@@ -3,18 +3,12 @@
 <body class="container" id="preview-page-bg">
     <div class="blog-field">
        
-        <!-- <div class="image"> -->
-  
-            <!-- <%= blog.path %> -->
-        <!-- </div> -->
-         <div class="title">
+        <div class="title">
             <h1><%= blog.title %></h1>
             <img src="<%= blog.path %>"></a>
         </div> 
          <hr>
-         <!-- <div class="author">
-            <p>By <%= blog.author.username %></p>
-        </div> -->  
+
         <div class="content">
             <%- blog.content %>
         </div>
@@ -31,7 +25,6 @@
             <form action="/blog/public/<%=blog._id %>" method="POST">
                  <button type="submit" class="public-btn"> PUBLIC</button>
             </form>
-    
            
         </div>
     </div> 

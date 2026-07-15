@@ -1,90 +1,13 @@
 <%- include("../layouts/boilerplate") %>
 
-    <!-- <div>
-        <h1> Hello <%- blog.title %></h1>
-        <img src="<%-blog.path %>" class="img-fluid">
-        <div class="m-4 text-justify">
-            <%- blog.content %>
-        </div>
-    </div>
-    <hr>
-    <% if(locals.user) { %>
-     
-
-    <div class="container m-5">
-        <div class="text-left">
-        <form method="post" action=" <%- blog._id %>/comment" class="mt-5 row">
-        <label for="email" class="form-label">Comment</label>
-        <div class="row">
-        <div class="col-8">
-            <input type="text" name="content" class="form-control">
-        </div>
-        <div class="col-2">
-            <button class="form-control btn btn-success" >Add</button>
-        </div>
-        </div>
-        
-    </form>
-        </div>
-    </div>
-     <% } %>
-
-    
-    <hr>
-   <div class="container mt-4">
-    <h3>Comments (<%= comments.length %>)</h3>
-    
-    <% comments.forEach(comment => { %>
-        <div class="card mb-3 shadow-sm">
-            <div class="card-body">
-                <div class="d-flex align-items-center  ">
-                    <img src="<%= comment.profile_image_url %>" width="30" height="30" class="rounded-circle me-2">
-                    <strong><%= comment.full_name %></strong>
-                    <small class="text-muted ms-auto"><%= new Date(comment.created_at).toLocaleDateString() %></small>
-                </div>
-                <p class="card-text"><%= comment.content %></p>
-            </div>
-        </div>
-    <% }) %>
-</div>
-    <br>
-    <br>
-
-</div> -->
-
-
-
-   
-   <!-- <button class="bookmark-button" id="bookmark-button" data-blog-id="<%= blog._id %>">
-     <% if (!bookmarkStatus) { %>
-         <i class="fa-regular fa-bookmark"> </i>
-    <% } %>
-        <% if (bookmarkStatus) { %>
-            <i class="fa-solid fa-bookmark"></i>
-        <% } %>
-          
-   </button>  -->
-
-   <!-- <i class="fa-solid fa-bookmark"></i> -->
-
-
-
-   <!-- <div class="d-flex align-items-center text-muted"> 
-        <img src="<%= author[0].profile_image_url %>" class="user-avatar me-2" style="width:30px; max-height:30px; border-radius:50px; border:1px solid white;">
-        <span style="color:white;">By <strong><a href="/profile/<%= author[0].id %>" class=""><%= author[0].full_name %></a></strong> • <%= new_date%></span>
-    </div> 
-     -->
-
+ 
 <body class="container"> 
     <div class="blog-field container"> 
         <div class="article-meta-row post-meta-data">
             
             <div class="author-details" >
-        
                 <img src="<%= author[0].profile_image_url %>" alt="Author" style="width: 40px; height: 40px; border-radius: 50%;">
                 <span style="color: #cbd5e1;">By <strong> <a href="/profile/<%=author[0].id %>"> <%= author[0].full_name %> </a></strong></span>
-                    
-            
                 <span style="color: #94a3b8; font-size: 0.9em; margin-left: 10px;"><%= new_date %></span>
             </div>
 
@@ -121,10 +44,7 @@
             <img src="<%= blog.path %>" class="blog-image shadow-sm">
         <% } %>
             </div>
-        
-
-        <!-- <hr> -->
-
+ 
         <div class="content">
             <!-- <%= blog.content %> -->
             <%- blog.content %>
@@ -173,5 +93,4 @@
         </section>
     </div>
 
-    
 </body>

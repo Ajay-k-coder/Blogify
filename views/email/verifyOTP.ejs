@@ -5,15 +5,9 @@
       <h2>Verify Your Email</h2>
         <p>Sent to: <strong><%= email %></strong></p>
     </div>
-
-
-      
       <form action="/user/auth/otp" method="POST">
-
         <input type="hidden" name="email" value="<%= email %>">
         <div class="otp-input-container" id="otp-input-container"> 
-          
-
           <input type="text" class="input-otp" name="otp[1]" maxlength="1" required>
           <input type="text" class="input-otp" name="otp[2]" maxlength="1" required>
           <input type="text" class="input-otp" name="otp[3]" maxlength="1" required>
@@ -24,6 +18,5 @@
         <button type="submit" id="otp-verify-button" class="mt-4">Verify OTP</button>
       </form>
     </div>
-
   </div>
 </body>

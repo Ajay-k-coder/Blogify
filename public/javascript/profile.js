@@ -1,8 +1,4 @@
 const option_button = document.getElementsByClassName("user_options");
-// console.log("like button", like);
-
-console.log(option_button);
-
 const published_post = document.getElementsByClassName("published_post");
 const like_post = document.getElementsByClassName("like_post");
 const save_post = document.getElementsByClassName("save_post");
@@ -10,74 +6,35 @@ const public = document.getElementsByClassName("public");
 const save = document.getElementsByClassName("save");
 const like = document.getElementsByClassName("like");
 
-console.log("save_post", save_post);
-// const ppost = document.getElementsByClassName("ppost");
-
-console.log("published_post", published_post);
-// console.log("ppost", ppost)
-
 if (option_button) {
     for (let button of option_button) {
-        // button.addEventListener("mouseenter", (event)=>{
-
-        //     for(let btn of option_button){
-        //         if(btn !== button){
-        //             btn.classList.remove("active");
-        //         }
-        //     }
-        //     const result = event.target;
-        //     result.classList.toggle("active");
-
-        // })
-        //     button.addEventListener("mouseleave", (event)=>{
-        //         const result = event.target;
-        //         result.classList.remove("active");
-        //     }
-        //     )
-
-        //  for(let button of option_button){
         button.addEventListener("click", async (event) => {
             const btn = event.target.classList;
-            console.log("button", btn);
-            console.log(btn);
             if (btn[0] === "save") {
                 try {
                     const response = await fetch("/blog/api/bookmark");
                     const datas = await response.json();
 
-                    console.log("datas.saveBlogs", datas.saveBlogs);
-
                     save_post[0].classList.add("class_block");
                     save_post[0].classList.remove("class_none");
                     save[0].classList.add("active");
-                    console.log("save_post[0]", save_post[0]);
 
                     published_post[0].classList.add("class_none");
                     published_post[0].classList.remove("class_block");
                     public[0].classList.remove("active");
 
-                    console.log("published_post[0]", published_post[0]);
-
                     like_post[0].classList.add("class_none");
                     like_post[0].classList.remove("class_block");
                     like[0].classList.remove("active");
-
-                    // }
-
                     save_post[0].innerHTML = "";
 
                     if (datas.saveBlogs.length > 0) {
-                        // <div class="row ppost user-blogs-list">
                         const parentCard = document.createElement("div");
                         parentCard.classList.add("user-blogs-list");
                         datas.saveBlogs.forEach((blog) => {
-                            // <div class="one-blog-container">
                             const card = document.createElement("div");
                             card.classList.add("one-blog-container");
-
                             card.innerHTML = `
-
-                                
                              <a href="/blog/${blog._id}" class="home-card-anchor">   
                                 <div class="parent blog">
                                     <div class="child1 grid-child">
@@ -97,8 +54,6 @@ if (option_button) {
 
                                     </div>
                                 </div>
-                    
-    
                         </a>
                                     `;
                             parentCard.appendChild(card);
@@ -113,23 +68,13 @@ if (option_button) {
                     console.log(error);
                 }
             } else if (btn[0] === "public") {
-                console.log("btn[0]", btn[0]);
-
-                // save_post[0].style.display = "none";
-                // save[0].classList.remove("active");
-                // published_post[0].style.display = "block";
-                // public[0].classList.add("active");
-
                 published_post[0].classList.add("class_block");
                 published_post[0].classList.remove("class_none");
                 public[0].classList.add("active");
 
-                console.log("published_post[0]", published_post[0]);
-
                 save_post[0].classList.add("class_none");
                 save_post[0].classList.remove("class_block");
                 save[0].classList.remove("active");
-                console.log("save_post[0]", save_post[0]);
 
                 like_post[0].classList.add("class_none");
                 like_post[0].classList.remove("class_block");
@@ -140,12 +85,9 @@ if (option_button) {
                     published_post[0].classList.remove("class_block");
                     public[0].classList.remove("active");
 
-                    console.log("published_post[0]", published_post[0]);
-
                     save_post[0].classList.add("class_none");
                     save_post[0].classList.remove("class_block");
                     save[0].classList.remove("active");
-                    console.log("save_post[0]", save_post[0]);
 
                     like_post[0].classList.add("class_block");
                     like_post[0].classList.remove("class_none");
@@ -156,7 +98,6 @@ if (option_button) {
 
                     like_post[0].innerHTML = " ";
 
-                    console.log("data.likeblogs", datas);
                     if (datas.likeblogs.length > 0) {
                         const parentCard = document.createElement("div");
                         parentCard.classList.add("user-blogs-list");
@@ -167,9 +108,6 @@ if (option_button) {
                             card.classList.add("one-blog-container");
 
                             card.innerHTML = `
-
-                                         
-
                             <a href="/blog/${blog._id}" class="home-card-anchor">   
                                 <div class="parent blog">
                                     <div class="child1 grid-child">

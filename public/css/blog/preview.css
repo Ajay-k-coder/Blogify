@@ -1,121 +1,98 @@
-
-#preview-page-bg{
-    background-color:#0f172a;
-    /* background-color:white; */
+#preview-page-bg {
+    background-color: #0f172a;
     background-color: #0f172a; /* Deep navy blue for the main page [cite: 237] */
-     color: #cbd5e1; /* Soft, readable light grey text [cite: 239] */
+    color: #cbd5e1; /* Soft, readable light grey text [cite: 239] */
     font-family: sans-serif;
 }
 
-
-
-.blog-field{ 
-   max-width:800px;
-   /* border:1px solid white; */
-   margin:40px auto;
-   margin:auto;
-   color:white;
-   border-radius:8px;
-   box-shadow:0 4px 6px rgba(0, 0, 0, 0.3);
-   background-color:#1e293b;
-   padding:30px;
-   
-
-}
-
-/* .blog-field .image{
-    max-width:100%; 
-    max-height:400px;
-    height:auto;
-    object-fit:contain;
-    border-radius:8px;
-    margin-bottom:30px;
-}  */
- 
- 
-
-.blog-field img{
-    max-width:100% !important;
-    max-height: 400px !important;
-    height:auto !important;
-    object-fit:contain !important;
-    display:block;
-    border-radius:4px;
-    margin:auto;
-    margin-bottom:30px;
-    border:1px solid #334155;
-    background-color: #1e293b
-}
-
-    .blog-field .content table{
-        width:100%;
-        border-collapse:collapse;
-        margin-top:20px;
-    
-    }
-
-.blog-field .content th, 
-.blog-field .content td {
-  padding: 12px 15px; /* Gives the text room to breathe [cite: 247] */
-  text-align: left;
-  border-bottom: 1px solid #334155; /* Subtle border for readability [cite: 247] */
-}
-
-
-.blog-field .content th{
-  background-color: #0f172a;
-  font-weight: bold;
-}
-
-.title{
-    font-size:3rem;
-    font-weight:900;
-    margin-bottom:10px;
-    
-}
-
-
-.container-btn{
-    width:100%;
-    display:flex;
-    justify-content:flex-end;
+.blog-field {
+    max-width: 800px;
     /* border:1px solid white; */
-   
-    margin-top:40px;
-    padding-top:20px;
-    gap:15px;
-    
-    border:1px solid #334155;
+    margin: 40px auto;
+    margin: auto;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    background-color: #1e293b;
+    padding: 30px;
 }
 
-.container-btn button{
-    padding:1.4vh 4vw;
-    font-weight:bold;
-    border:none;
-    border-radius:5px;
-    color:white;
-    transition:opacity 0.2s;
+.blog-field img {
+    max-width: 100% !important;
+    max-height: 400px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block;
+    border-radius: 4px;
+    margin: auto;
+    margin-bottom: 30px;
+    border: 1px solid #334155;
+    background-color: #1e293b;
 }
 
-.container-btn button:hover{
+.blog-field .content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.blog-field .content th,
+.blog-field .content td {
+    padding: 12px 15px; /* Gives the text room to breathe [cite: 247] */
+    text-align: left;
+    border-bottom: 1px solid #334155; /* Subtle border for readability [cite: 247] */
+}
+
+.blog-field .content th {
+    background-color: #0f172a;
+    font-weight: bold;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.container-btn {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    /* border:1px solid white; */
+
+    margin-top: 40px;
+    padding-top: 20px;
+    gap: 15px;
+
+    border: 1px solid #334155;
+}
+
+.container-btn button {
+    padding: 1.4vh 4vw;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: opacity 0.2s;
+}
+
+.container-btn button:hover {
     opacity: 0.8;
 }
 
-
 .container-btn .edit-btn {
-  background-color: transparent;
-  border: 1px solid #cbd5e1;
-  color: #cbd5e1; /* Subtle transparent grey [cite: 251] */
+    background-color: transparent;
+    border: 1px solid #cbd5e1;
+    color: #cbd5e1; /* Subtle transparent grey [cite: 251] */
 }
 
 .container-btn .save-btn {
-  background-color: #3b82f6; /* Solid, modern blue [cite: 251] */
+    background-color: #3b82f6; /* Solid, modern blue [cite: 251] */
 }
 .container-btn .public-btn {
-  background-color: #10b981; /* Vibrant green for publish action [cite: 251] */
+    background-color: #10b981; /* Vibrant green for publish action [cite: 251] */
 }
 
-.blog-field .content{
-    color:#cbd5e1;
+.blog-field .content {
+    color: #cbd5e1;
 }
-

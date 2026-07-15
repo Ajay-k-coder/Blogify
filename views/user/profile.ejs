@@ -9,63 +9,28 @@
                     class="rounded-circle shadow mb-3"  >
                 <div class="user-details">
                     <div class="name-bio">
-                        <!-- <tr>
-                            <td><i class="bi bi-envelope"></i></td>
-                            <td><%= profileUser.email %></td>
-                        </tr>
-                        <tr>
-                            <td><i class="bi bi-geo-alt"></i></td>
-                            <td><%= profileUser.location || 'Unknown' %></td>
-                        </tr> -->
+ 
                         <div class="name">
-                           <!-- <i class="bi bi-person"></i> -->
-                            
+                             
                             <h3 style="color:white;" class="user_name"><%= profileUser.full_name %></h3>
                           
                         </div>
                     
-                            <!-- <td><i class="bi bi-calendar"></i></td> -->
-                            <!-- <td colspan="2">Joined on <%= new Date(profileUser.created_at).toLocaleDateString() %></td> -->
-                        
+                          
                         <div class="bio">
-                            <!-- <i class="bi bi-pen"></i> -->
-                          <p style="font-size:14px;"><%= profileUser.bio || 'No bio added yet.' %></p>
+                           <p style="font-size:14px;"><%= profileUser.bio || 'No bio added yet.' %></p>
                         </div>
                         </div>
-                        <!-- <tr>
-                            <td><i class="bi bi-journal-text"></i></td>
-                            <td><i class="bi bi-people"></i></td>
-                               <td><i class="bi bi-people"></i></td>
-                                
-                            
-                        </tr> -->
+ 
                         <div class="stats">
                             <li><%= userBlogs.length %> <small>Blogs</small></li>
                             <li><%= profileUser.followerCount %>  <small>Followers</small></li>
                             <li><%= profileUser.followingCount %> <small>Following</small></li>
                         </div>
                         
-                        <!-- <tr class="stats-labels">
-                                 <td><small>Blogs</small></td>  
-                            <td> <%= profileUser.followers_count %><small> Followers</small></td>
-                            <td> <%= profileUser.following_count %> <small> Following</small></td>
-                          
-                        </tr> -->
-                     
-                           
-                           
-                    
-
-
-                 
-
-                    
-                    
-                    
+        
                     <% if (isOwnProfile) { %>
-                        <!-- <form action="get"> -->
-                            <!-- <button>Edit Profile</button> -->
-                        <!-- </form> -->
+
                         <a href="/profile/edit/" class="btn btn-outline-primary btn-sm " >Edit Profile</a>
                     <% } else { %>
                           
@@ -78,24 +43,16 @@
                 </div>
                 <hr>
                   <div class="joined">
-                    <!-- <small >Joined <%= profileUser.created_at %></small> -->
                  </div>
             </div>
 
-            <div class="col-md-8 user_blogs">
-              
+            <div class="col-md-8 user_blogs">  
                 <div class="options">
-                    <!-- (<%= userBlogs.length %>) -->
-                    <!-- <a  href="" class="published" >Published  </a> -->
                     <button   class="public active  user_options "> Published</button>
-
                     <% if ( isOwnProfile) { %>
                         <button id="like" class="like user_options"> Like</button>
                         <button id="save" class="save user_options"> Save</button>
-                        
-                     
-                    <!-- <a href="" class="save"> Save</a>
-                    <a href="" class="drafts"> Drafts</a> -->
+
                     <% } %>
                 </div>
                 <div class="save_post class_none"></div>
@@ -104,19 +61,6 @@
                     <% if (userBlogs.length > 0) { %>
                         <div class="row ppost user-blogs-list">
                             <% userBlogs.forEach(blog => { %>
-                                <!-- <div class="  one-blog-container">
-                                    <a href="/blog/<%= blog._id %>" class="blog-link">
-                                        <div class="   blog-card">
-                                            <img src="<%= blog.path %>">
-                                            <div class="card-body"> 
-                                                <h5 ><%= blog.title %></h5>
-                                                <p class="card-text"  ><%- blog.content %></p>
-                                                <!-- <a href="/blog/<%= blog._id %>" class="btn btn-link p-0">Read More</a> 
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div> -->
-
 
                             <a href="/blog/<%= blog._id %>" class="home-card-anchor">   
                                 <div class="parent blog">
@@ -138,7 +82,6 @@
                                     </div>
                                 </div>
                     
-    
                         </a>
                             <% }) %>
                 
